@@ -8,5 +8,5 @@ FROM registry.redhat.io/rhdh/rhdh-hub-rhel9:1.1
 
 COPY index.ts packages/backend/src/index.ts
 
-COPY EntityPage.tsx packages/app/src/components/catalog/EntityPage.tsx
+# COPY EntityPage.tsx packages/app/src/components/catalog/EntityPage.tsx
 
