@@ -9,7 +9,7 @@ customized using upstream:
 ```bash
 
 # run the rhdp to get content
-podman run -it --rm --entrypoint /bin/bash registry.redhat.io/rhdh/rhdh-hub-rhel9:1.1
+podman run -it --rm --entrypoint /bin/bash quay.io/rhdh/rhdh-hub-rhel9:1.2
 
 
 # build the backstage image
@@ -22,7 +22,7 @@ cd backstage-customize
 
 podman build -t quay.io/wangzheng422/qimgs:rhdh-hub-rhel9-1.1-2024.05.18.v01 -f Dockerfile .
 
-podman push quay.io/wangzheng422/qimgs:rhdh-hub-rhel9-1.1-2024.05.17.v02
+podman push quay.io/wangzheng422/qimgs:rhdh-hub-rhel9-1.1-2024.05.18.v01
 
 
 ```
