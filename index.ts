@@ -98,6 +98,15 @@ backend.add(
 
 backend.add(import('@backstage/plugin-catalog-backend/alpha'));
 
+
+// begin
+// https://backstage.io/docs/integrations/azure/discovery
+backend.add(import('@backstage/plugin-catalog-backend-module-azure/alpha'));
+// end
+// https://backstage.io/docs/integrations/azure/discovery
+
+
+
 // TODO: Probably we should now provide this as a dynamic plugin
 backend.add(import('@backstage/plugin-catalog-backend-module-openapi'));
 
@@ -133,6 +142,8 @@ backend.add(import('@backstage-community/plugin-azure-devops-backend'));
 backend.add(catalogModuleCustomExtensions());
 // end
 // https://github.com/backstage/community-plugins/blob/main/workspaces/azure-devops/plugins/azure-devops-backend/README.md
+
+
 
 
 backend.start();

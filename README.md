@@ -20,9 +20,9 @@ git clone https://github.com/wangzheng422/backstage-customize
 cd backstage-customize
 
 
-podman build -t quay.io/wangzheng422/qimgs:rhdh-hub-rhel9-1.1-2024.05.18.v01 -f Dockerfile .
+podman build -t quay.io/wangzheng422/qimgs:rhdh-hub-rhel9-1.2-2024.05.18.v01 -f Dockerfile .
 
-podman push quay.io/wangzheng422/qimgs:rhdh-hub-rhel9-1.1-2024.05.18.v01
+podman push quay.io/wangzheng422/qimgs:rhdh-hub-rhel9-1.2-2024.05.18.v01
 
 
 ```
