@@ -19,6 +19,8 @@ cd /data
 git clone https://github.com/wangzheng422/backstage-customize
 cd backstage-customize
 
+git checkout 1.2
+
 
 podman build -t quay.io/wangzheng422/qimgs:rhdh-hub-rhel9-1.2-2024.05.19.v01 -f Dockerfile .
 
