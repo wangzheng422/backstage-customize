@@ -3,7 +3,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: azure-examples
+  name: azure-examples-github
   annotations:
     dev.azure.com/project-repo: demo/service-demo
     dev.azure.com/host-org: dev.azure.com/wangzheng422
@@ -14,7 +14,7 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: azure-example-website
+  name: azure-example-website-github
   annotations:
     dev.azure.com/project-repo: demo/service-demo
     dev.azure.com/host-org: dev.azure.com/wangzheng422
@@ -22,14 +22,14 @@ spec:
   type: azure-website
   lifecycle: experimental
   owner: azure-guests
-  system: azure-examples
-  providesApis: [azure-example-grpc-api]
+  system: azure-examples-github
+  providesApis: [azure-example-grpc-api-github]
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: azure-example-grpc-api
+  name: azure-example-grpc-api-github
   annotations:
     dev.azure.com/project-repo: demo/service-demo
     dev.azure.com/host-org: dev.azure.com/wangzheng422
@@ -37,7 +37,7 @@ spec:
   type: grpc
   lifecycle: experimental
   owner: azure-guests
-  system: azure-examples
+  system: azure-examples-github
   definition: |
     syntax = "proto3";
 
