@@ -1,22 +1,23 @@
+
 import { rootHttpRouterServiceFactory } from '@backstage/backend-app-api';
-import { statusCheckHandler } from '@backstage/backend-common';
 import { createBackend } from '@backstage/backend-defaults';
+import { PackageRoles } from '@backstage/cli-node';
 import {
   dynamicPluginsFeatureDiscoveryServiceFactory,
-  dynamicPluginsFrontendSchemas,
-  dynamicPluginsSchemasServiceFactory,
   dynamicPluginsServiceFactory,
+  dynamicPluginsSchemasServiceFactory,
+  dynamicPluginsFrontendSchemas,
+  dynamicPluginsRootLoggerServiceFactory,
 } from '@backstage/backend-dynamic-feature-service';
-import { PackageRoles } from '@backstage/cli-node';
+import {
+  rbacDynamicPluginsProvider,
+  pluginIDProviderService,
+} from './modules/rbacDynamicPluginsModule';
+import { metricsHandler } from './metrics';
+import { statusCheckHandler } from '@backstage/backend-common';
 import { RequestHandler } from 'express';
 import * as path from 'path';
 import { CommonJSModuleLoader } from './loader';
-import { customLogger } from './logger';
-import { metricsHandler } from './metrics';
-import {
-  pluginIDProviderService,
-  rbacDynamicPluginsProvider,
-} from './modules/rbacDynamicPluginsModule';
 
 
 // begin
@@ -89,7 +90,7 @@ backend.add(
   }),
 );
 backend.add(dynamicPluginsFrontendSchemas());
-backend.add(customLogger());
+backend.add(dynamicPluginsRootLoggerServiceFactory());
 
 backend.add(import('@backstage/plugin-app-backend/alpha'));
 backend.add(
@@ -97,15 +98,6 @@ backend.add(
 );
 
 backend.add(import('@backstage/plugin-catalog-backend/alpha'));
-
-
-// begin
-// https://backstage.io/docs/integrations/azure/discovery
-backend.add(import('@backstage/plugin-catalog-backend-module-azure/alpha'));
-// end
-// https://backstage.io/docs/integrations/azure/discovery
-
-
 
 // TODO: Probably we should now provide this as a dynamic plugin
 backend.add(import('@backstage/plugin-catalog-backend-module-openapi'));
@@ -122,19 +114,14 @@ backend.add(import('@backstage/plugin-search-backend-module-catalog/alpha'));
 backend.add(import('@backstage/plugin-events-backend/alpha'));
 
 backend.add(import('@janus-idp/backstage-plugin-rbac-backend'));
-backend.add(
-  import('@janus-idp/backstage-scaffolder-backend-module-annotator/alpha'),
-);
 backend.add(pluginIDProviderService);
 backend.add(rbacDynamicPluginsProvider);
 
 backend.add(import('@backstage/plugin-auth-backend'));
-backend.add(import('@backstage/plugin-auth-backend-module-guest-provider'));
 backend.add(import('./modules/authProvidersModule'));
 
 backend.add(import('@internal/plugin-dynamic-plugins-info-backend'));
 backend.add(import('@internal/plugin-scalprum-backend'));
-
 
 // begin
 // https://github.com/backstage/community-plugins/blob/main/workspaces/azure-devops/plugins/azure-devops-backend/README.md
@@ -142,8 +129,6 @@ backend.add(import('@backstage-community/plugin-azure-devops-backend'));
 backend.add(catalogModuleCustomExtensions());
 // end
 // https://github.com/backstage/community-plugins/blob/main/workspaces/azure-devops/plugins/azure-devops-backend/README.md
-
-
 
 
 backend.start();

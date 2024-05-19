@@ -1,4 +1,4 @@
-FROM quay.io/rhdh/rhdh-hub-rhel9:1.2
+FROM registry.redhat.io/rhdh/rhdh-hub-rhel9:1.1
 
 # RUN /bin/rm -f .npmrc yarn.lock && \
 #     npm install -g yarn
